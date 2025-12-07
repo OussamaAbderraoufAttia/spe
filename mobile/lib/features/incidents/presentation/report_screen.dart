@@ -97,7 +97,7 @@ class _ReportScreenState extends ConsumerState<ReportScreen> {
                 const SizedBox(height: 16),
 
                 DropdownButtonFormField<int>(
-                  value: _selectedCategory,
+                  initialValue: _selectedCategory,
                   decoration: const InputDecoration(
                     labelText: 'Category',
                     prefixIcon: Icon(Icons.category),
