@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+sqlalchemy
+asyncpg
+databases
+psycopg2-binary
+geoalchemy2
+alembic
+python-jose[cryptography]
+passlib[bcrypt]
+python-multipart
+email-validator

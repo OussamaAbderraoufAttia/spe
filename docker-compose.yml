@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgis/postgis:13-3.1
+    restart: always
+    environment:
+      POSTGRES_USER: leakcontrol
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: leakcontrol_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build: ./backend
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    volumes:
+      - ./backend:/app
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://leakcontrol:password@db:5432/leakcontrol_db
+      - SECRET_KEY=supersecretkey
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
